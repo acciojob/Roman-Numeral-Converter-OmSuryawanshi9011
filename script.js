@@ -1,29 +1,25 @@
 function convertToRoman(num) {
   const obj = {
     0: ['M', 1000],
-    1: ['D', 500],
-    2: ['C', 100],
-    3: ['L', 50],
-    4: ['X', 10],
-    5: ['V', 5],
-    6: ['I', 1],
+    1: ['CM', 900],
+    2: ['D', 500],
+    3: ['CD', 400],
+    4: ['C', 100],
+    5: ['XC', 90],
+    6: ['L', 50],
+    7: ['XL', 40],
+    8: ['X', 10],
+    9: ['IX', 9],
+    10: ['V', 5],
+    11: ['IV', 4],
+    12: ['I', 1]
   };
 
   let romanNumeral = '';
 
-  for (let i = 0; i <= 6; i++) {
-    const [symbol, value] = obj[i];
+  for (let key in obj) {
+    let [symbol, value] = obj[key];
 
-    // Handling subtraction cases
-    if (i % 2 === 0 && i + 2 <= 6 && num >= value - obj[i + 2][1]) {
-      romanNumeral += obj[i + 2][0] + symbol;
-      num -= value - obj[i + 2][1];
-    } else if (i % 2 !== 0 && i + 1 <= 6 && num >= value - obj[i + 1][1]) {
-      romanNumeral += obj[i + 1][0] + symbol;
-      num -= value - obj[i + 1][1];
-    }
-
-    // Handling regular cases
     while (num >= value) {
       romanNumeral += symbol;
       num -= value;
@@ -34,9 +30,7 @@ function convertToRoman(num) {
 }
 
 // Example usage:
-console.log(convertToRoman(36)); // Expected output: "XXXVI"
+// console.log(convertToRoman(36)); // Expected output: "XXXVI"
 
 // do not edit below this line
-module.exports = convertToRoman
-	
-
+module.exports = convertToRoman;
